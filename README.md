@@ -5,7 +5,7 @@ https://quoridorstrats.wordpress.com/notation/
 ### React
 https://mae.chab.in/archives/2943#comment-34701
 https://medium.com/@thejasonfile/a-simple-intro-to-javascript-imports-and-exports-389dd53c3fac
-
+https://github.com/gitname/react-gh-pages
 
 
 
