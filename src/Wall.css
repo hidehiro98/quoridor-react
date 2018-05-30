@@ -1,0 +1,17 @@
+.vwall {
+
+}
+
+.hwall {
+  width: 50px;
+  height: 10px;
+  background-color: #EEEEEE;
+  position: absolute;
+}
+
+.hwall:hover {
+  width: 120px;
+  height: 10px;
+  background-color: #DDDDDD;
+  z-index: 1;
+}
