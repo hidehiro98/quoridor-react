@@ -21,15 +21,15 @@ class Game extends React.Component {
     return (
       <div>
         <div className="square-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
+          {this.renderSquare(80)}
+          {this.renderSquare(79)}
+          {this.renderSquare(78)}
+          {this.renderSquare(77)}
+          {this.renderSquare(76)}
+          {this.renderSquare(75)}
+          {this.renderSquare(74)}
+          {this.renderSquare(73)}
+          {this.renderSquare(72)}
         </div>
         <div className="wall-row">
           <div className="hwall-wrapper">
@@ -485,39 +485,39 @@ class Game extends React.Component {
           </div>
         </div>
         <div className="square-row">
-          {this.renderSquare(18)}
+          {this.renderSquare(8)}
           <div className="vwall-wrapper">
             {this.renderVWall(0)}
           </div>
-          {this.renderSquare(18)}
+          {this.renderSquare(7)}
           <div className="vwall-wrapper">
             {this.renderVWall(0)}
           </div>
-          {this.renderSquare(18)}
+          {this.renderSquare(6)}
           <div className="vwall-wrapper">
             {this.renderVWall(0)}
           </div>
-          {this.renderSquare(18)}
+          {this.renderSquare(5)}
           <div className="vwall-wrapper">
             {this.renderVWall(0)}
           </div>
-          {this.renderSquare(18)}
+          {this.renderSquare(4)}
           <div className="vwall-wrapper">
             {this.renderVWall(0)}
           </div>
-          {this.renderSquare(18)}
+          {this.renderSquare(3)}
           <div className="vwall-wrapper">
             {this.renderVWall(0)}
           </div>
-          {this.renderSquare(18)}
+          {this.renderSquare(2)}
           <div className="vwall-wrapper">
             {this.renderVWall(0)}
           </div>
-          {this.renderSquare(18)}
+          {this.renderSquare(1)}
           <div className="vwall-wrapper">
             {this.renderVWall(0)}
           </div>
-          {this.renderSquare(18)}
+          {this.renderSquare(0)}
         </div>
       </div>
     );
