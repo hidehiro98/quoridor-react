@@ -1,23 +1,25 @@
-.square-row {
+.wall-row {
   display: flex;
   justify-content: center;
 }
 
-.wall-row {
+.square-row {
   display: flex;
   justify-content: center;
-  /*padding-right: 70px;*/
 }
 
 .hwall-wrapper {
   position: relative;
   margin-left: 70px;
   margin-top: -5px;
+
 }
 
 .hwall-wrapper:first-child {
   margin-left: -120px;
 }
 
-.hwall1 {
+.vwall-wrapper {
+  position: relative;
+  margin: 10px 10px 0 0px;
 }
