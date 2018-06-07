@@ -23,3 +23,9 @@
   position: relative;
   margin: 10px 10px 0 0px;
 }
+
+.game-info {
+  position: absolute;
+  right: 140px;
+  top: 17px;
+}

@@ -10,6 +10,7 @@
   height: 10px;
   background-color: #DDDDDD;
   z-index: 1;
+  transition-delay: 0.1s;
 }
 
 .vwall {
@@ -26,5 +27,6 @@
   z-index: 1;
   transform: rotate(180deg);
   bottom: 10px;
+  transition-delay: 0.1s;
   /*transform-origin: top;*/
 }
