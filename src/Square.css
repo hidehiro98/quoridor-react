@@ -30,10 +30,50 @@
   margin: 10px;
 }
 
+.square-first-row:hover > .player1Next {
+  transition-delay: 0.1s;
+  background-color: blue;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  margin: 10px;
+  opacity: 0.3;
+}
+
+.square:hover > .player1Next {
+  transition-delay: 0.1s;
+  background-color: blue;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  margin: 10px;
+  opacity: 0.3;
+}
+
 .player2 {
   background-color: red;
   height: 30px;
   width: 30px;
   border-radius: 50%;
   margin: 10px;
+}
+
+.square-first-row:hover > .player2Next {
+  transition-delay: 0.1s;
+  background-color: red;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  margin: 10px;
+  opacity: 0.3;
+}
+
+.square:hover > .player2Next {
+  transition-delay: 0.1s;
+  background-color: red;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  margin: 10px;
+  opacity: 0.3;
 }

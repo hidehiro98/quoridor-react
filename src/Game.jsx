@@ -24,8 +24,72 @@ class Game extends React.Component {
     this.state.historyPlayers[0]['squares'][76] = 'player2';
   }
 
+  handleClick(i) {
+    let player = ''
+    if (this.state.stepNumber % 2 == 0) {
+      player = 'player1';
+    } else {
+      player = 'player2';
+    }
+
+    let nextPlayer = ''
+    if (this.state.stepNumber % 2 == 1) {
+      nextPlayer = 'Player 1';
+    } else {
+      nextPlayer = 'Player 2';
+    }
+
+    const nextStepNumber = this.state.stepNumber + 1
+    let currentHistoryPlayers = this.state.historyPlayers[0]['squares']
+
+    currentHistoryPlayers[currentHistoryPlayers.findIndex((element) => {return element == player})] = null
+    currentHistoryPlayers[i] = player
+
+    const history = this.state.historyPlayers.slice(0, this.state.stepNumber + 1);
+
+    this.setState({
+      stepNumber: nextStepNumber,
+      historyPlayers: history.concat([{
+        squares: currentHistoryPlayers
+      }]),
+      nextPlayer: nextPlayer
+    });
+  }
+
   renderSquare(i) {
-    return <Square number={i} history={this.state.historyPlayers[0]['squares'][i]} />;
+    let playerClass = this.state.historyPlayers[this.state.stepNumber]['squares'][i]
+    const currentPlayer1 = this.state.historyPlayers[this.state.stepNumber]['squares'].findIndex((element) => {return element == 'player1'})
+    const currentPlayer2 = this.state.historyPlayers[this.state.stepNumber]['squares'].findIndex((element) => {return element == 'player2'})
+
+    if (this.state.nextPlayer == 'Player 1') {
+      if (i == (currentPlayer1 + 1)) {
+        playerClass += ' player1Next';
+      } else if (i == (currentPlayer1 - 1)) {
+        playerClass += ' player1Next';
+      } else if (i == (currentPlayer1 + 9)) {
+        playerClass += ' player1Next';
+      } else if (i == (currentPlayer1 - 9)) {
+        playerClass += ' player1Next';
+      }
+    }
+
+    if (this.state.nextPlayer == 'Player 2') {
+      if (i == (currentPlayer2 + 1)) {
+        playerClass += ' player2Next';
+      } else if (i == (currentPlayer2 - 1)) {
+        playerClass += ' player2Next';
+      } else if (i == (currentPlayer2 + 9)) {
+        playerClass += ' player2Next';
+      } else if (i == (currentPlayer2 - 9)) {
+        playerClass += ' player2Next';
+      }
+    }
+
+    return <Square
+      number={i}
+      history={playerClass}
+      gameOnClick={() => this.handleClick(i)}
+    />;
   }
 
   renderVWall(i) {
@@ -97,7 +161,7 @@ class Game extends React.Component {
     return (
       <div>
         <div className='game-info'>
-          Test
+          The move: {this.state.nextPlayer}
         </div>
         <div>
           <div className="square-row">
