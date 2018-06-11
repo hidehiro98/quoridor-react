@@ -13,6 +13,22 @@
   transition-delay: 0.1s;
 }
 
+.hwall-player1 {
+  width: 120px;
+  height: 10px;
+  background-color: #999999;
+  z-index: 1;
+  position: absolute;
+}
+
+.hwall-player2 {
+  width: 120px;
+  height: 10px;
+  background-color: #999999;
+  z-index: 1;
+  position: absolute;
+}
+
 .vwall {
   width: 10px;
   height: 50px;
@@ -28,5 +44,27 @@
   transform: rotate(180deg);
   bottom: 10px;
   transition-delay: 0.1s;
+  /*transform-origin: top;*/
+}
+
+.vwall-player1 {
+  width: 10px;
+  height: 120px;
+  background-color: #999999;
+  z-index: 1;
+  transform: rotate(180deg);
+  bottom: 10px;
+  position: absolute;
+  /*transform-origin: top;*/
+}
+
+.vwall-player2 {
+  width: 10px;
+  height: 120px;
+  background-color: #999999;
+  z-index: 1;
+  transform: rotate(180deg);
+  bottom: 10px;
+  position: absolute;
   /*transform-origin: top;*/
 }
