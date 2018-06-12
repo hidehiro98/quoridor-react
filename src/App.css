@@ -10,10 +10,10 @@ html {
 .App-header {
   background-color: #222;
   /*height: 50px;*/
-  padding: 20px;
+  padding: 2rem;
   color: white;
 }
 
 .App-game {
-  margin-top: 30px;
+  margin-top: 3rem;
 }
