@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import ClassNames from 'classnames';
 import './Square.css';
 
 function Square(props) {
-  const squareClass = props.number < 9 ? 'square-first-row' : 'square'
+  const squareClass = 'square'
   const playerClass = 'player1'
   return (
     <div className={squareClass} onClick={() => props.onClick()}>
