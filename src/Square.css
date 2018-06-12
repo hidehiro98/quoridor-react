@@ -1,37 +1,30 @@
-.square-first-row {
-  height: 50px;
-  width: 50px;
-  margin: 10px;
-  background-color: #EEEEEE;
-}
-
-.square-first-row:hover {
-  background-color: #DDDDDD;
-}
-
 .square {
-  height: 50px;
-  width: 50px;
-  margin: 10px 5px;
+  height: 5rem;
+  width: 5rem;
+  margin: 1rem 0.5rem;
   background-color: #EEEEEE;
 }
+
+.square-row:first-child .square {
+  margin: 1rem;
+}
+
 
 .square:hover {
   background-color: #DDDDDD;
 }
 
+.player {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  margin: 1rem;
+}
+
 .player1 {
   background-color: blue;
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-  margin: 10px;
 }
 
 .player2 {
   background-color: red;
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-  margin: 10px;
 }
