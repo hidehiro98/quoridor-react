@@ -18,7 +18,9 @@ class Game extends React.Component {
         squares: Array(64).fill('hwall'),
       }],
       stepNumber: 0,
-      nextPlayer: 'Player 1'
+      nextPlayer: 'Player 1',
+      player1Walls: 10,
+      palyer2Walls: 10
     };
     this.state.historyPlayers[0]['squares'][4] = 'player1';
     this.state.historyPlayers[0]['squares'][76] = 'player2';
@@ -280,51 +282,35 @@ class Game extends React.Component {
           <div className="wall-row">
             {this.renderHWallRow(56)}
           </div>
-          <div>
-            {this.renderSquareAndVWallRow(63, 56)}
-          </div>
+          {this.renderSquareAndVWallRow(63, 56)}
           <div className="wall-row">
             {this.renderHWallRow(48)}
           </div>
-          <div>
-            {this.renderSquareAndVWallRow(54, 48)}
-          </div>
+          {this.renderSquareAndVWallRow(54, 48)}
           <div className="wall-row">
             {this.renderHWallRow(40)}
           </div>
-          <div>
-            {this.renderSquareAndVWallRow(45, 40)}
-          </div>
+          {this.renderSquareAndVWallRow(45, 40)}
           <div className="wall-row">
             {this.renderHWallRow(32)}
           </div>
-          <div>
-            {this.renderSquareAndVWallRow(36, 32)}
-          </div>
+          {this.renderSquareAndVWallRow(36, 32)}
           <div className="wall-row">
             {this.renderHWallRow(24)}
           </div>
-          <div>
-            {this.renderSquareAndVWallRow(27, 24)}
-          </div>
+          {this.renderSquareAndVWallRow(27, 24)}
           <div className="wall-row">
             {this.renderHWallRow(16)}
           </div>
-          <div>
-            {this.renderSquareAndVWallRow(18, 16)}
-          </div>
+          {this.renderSquareAndVWallRow(18, 16)}
           <div className="wall-row">
             {this.renderHWallRow(8)}
           </div>
-          <div>
-            {this.renderSquareAndVWallRow(9, 8)}
-          </div>
+          {this.renderSquareAndVWallRow(9, 8)}
           <div className="wall-row">
             {this.renderHWallRow(0)}
           </div>
-          <div>
-            {this.renderSquareAndVWallRow(0, 0)}
-          </div>
+          {this.renderSquareAndVWallRow(0, 0)}
         </div>
       </div>
     );
