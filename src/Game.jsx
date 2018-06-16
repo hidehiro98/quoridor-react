@@ -5,23 +5,39 @@ import Square from './Square';
 import {VWall, HWall} from './Wall';
 
 class Game extends React.Component {
+  static get BOARD_WIDTH() {
+    return 9;
+  }
+
+  static get BOARD_HEIGHT() {
+    return 9;
+  }
+
+  static get VWALL_COUNT() {
+    return Game.BOARD_WIDTH - 1;
+  }
+
+  static get HWALL_COUNT() {
+    return Game.BOARD_HEIGHT -1;
+  }
+
   constructor() {
     super();
     this.state = {
       historyPlayers: [{
-        squares: Array(81).fill(null),
+        squares: Array(Game.BOARD_WIDTH * Game.BOARD_HEIGHT).fill(null),
       }],
       historyVWalls: [{
-        squares: Array(64).fill('vwall'),
+        squares: Array(Game.VWALL_COUNT * Game.HWALL_COUNT).fill('vwall'),
       }],
       historyHWalls: [{
-        squares: Array(64).fill('hwall'),
+        squares: Array(Game.VWALL_COUNT * Game.HWALL_COUNT).fill('hwall'),
       }],
       stepNumber: 0,
       nextPlayer: 'Player 1'
     };
-    this.state.historyPlayers[0]['squares'][4] = 'player1';
-    this.state.historyPlayers[0]['squares'][76] = 'player2';
+    this.state.historyPlayers[0]['squares'][Math.floor(Game.BOARD_WIDTH / 2)] = 'player1';
+    this.state.historyPlayers[0]['squares'][Game.BOARD_WIDTH * Game.BOARD_HEIGHT - Math.ceil(Game.BOARD_WIDTH / 2)] = 'player2';
   }
 
   handleClick(i) {
@@ -31,7 +47,7 @@ class Game extends React.Component {
     } else {
       player = 'player2';
     }
-
+  
     let nextPlayer = ''
     if (this.state.stepNumber % 2 == 1) {
       nextPlayer = 'Player 1';
@@ -67,9 +83,9 @@ class Game extends React.Component {
   handleClickVWall(i) {
     let player = ''
     if (this.state.stepNumber % 2 == 0) {
-      player = 'vwall-player1';
+      player = 'vwall player1';
     } else {
-      player = 'vwall-player2';
+      player = 'vwall player2';
     }
 
     let nextPlayer = ''
@@ -112,9 +128,9 @@ class Game extends React.Component {
   handleClickHWall(i) {
     let player = ''
     if (this.state.stepNumber % 2 == 0) {
-      player = 'hwall-player1';
+      player = 'hwall player1';
     } else {
-      player = 'hwall-player2';
+      player = 'hwall player2';
     }
 
     let nextPlayer = ''
@@ -161,25 +177,25 @@ class Game extends React.Component {
 
     if (this.state.nextPlayer == 'Player 1') {
       if (i == (currentPlayer1 + 1)) {
-        playerClass += ' player1Next';
+        playerClass += ' playerNext1';
       } else if (i == (currentPlayer1 - 1)) {
-        playerClass += ' player1Next';
+        playerClass += ' playerNext1';
       } else if (i == (currentPlayer1 + 9)) {
-        playerClass += ' player1Next';
+        playerClass += ' playerNext1';
       } else if (i == (currentPlayer1 - 9)) {
-        playerClass += ' player1Next';
+        playerClass += ' playerNext1';
       }
     }
 
     if (this.state.nextPlayer == 'Player 2') {
       if (i == (currentPlayer2 + 1)) {
-        playerClass += ' player2Next';
+        playerClass += ' playerNext2';
       } else if (i == (currentPlayer2 - 1)) {
-        playerClass += ' player2Next';
+        playerClass += ' playerNext2';
       } else if (i == (currentPlayer2 + 9)) {
-        playerClass += ' player2Next';
+        playerClass += ' playerNext2';
       } else if (i == (currentPlayer2 - 9)) {
-        playerClass += ' player2Next';
+        playerClass += ' playerNext2';
       }
     }
 
@@ -211,7 +227,7 @@ class Game extends React.Component {
   }
 
   renderHWallRow(i) {
-    const hWallRow = [...Array(8)].map((_, inner) => {
+    const hWallRow = [...Array(Game.VWALL_COUNT)].map((_, inner) => {
       return (
         <div className="hwall-wrapper">
           {this.renderHWall(i + inner)}
@@ -222,50 +238,34 @@ class Game extends React.Component {
   }
 
   renderSquareAndVWallRow(square, vWall) {
+    const squareRow = [...Array(Game.BOARD_WIDTH + Game.VWALL_COUNT)].map((_, inner) => {
+      var col = parseInt(inner / 2, 10);
+      if (inner % 2 === 0) {
+        return (this.renderSquare(square + col));
+      } else {
+        if (square >= Game.BOARD_WIDTH * Game.HWALL_COUNT) {
+          // 最初の行は縦壁を設置しない
+          return null;
+        } else {
+          // それ以降は設置
+          return (<div className="vwall-wrapper">{this.renderVWall(vWall + col)}</div>);
+        }
+      }
+    });
+
     return (
-      <div className="square-row">
-        {this.renderSquare(square)}
-        <div className="vwall-wrapper">
-          {this.renderVWall(vWall)}
-        </div>
-        {this.renderSquare(square + 1)}
-        <div className="vwall-wrapper">
-          {this.renderVWall(vWall + 1)}
-        </div>
-        {this.renderSquare(square + 2)}
-        <div className="vwall-wrapper">
-          {this.renderVWall(vWall + 2)}
-        </div>
-        {this.renderSquare(square + 3)}
-        <div className="vwall-wrapper">
-          {this.renderVWall(vWall + 3)}
-        </div>
-        {this.renderSquare(square + 4)}
-        <div className="vwall-wrapper">
-          {this.renderVWall(vWall + 4)}
-        </div>
-        {this.renderSquare(square + 5)}
-        <div className="vwall-wrapper">
-          {this.renderVWall(vWall + 5)}
-        </div>
-        {this.renderSquare(square + 6)}
-        <div className="vwall-wrapper">
-          {this.renderVWall(vWall + 6)}
-        </div>
-        {this.renderSquare(square + 7)}
-        <div className="vwall-wrapper">
-          {this.renderVWall(vWall + 7)}
-        </div>
-        {this.renderSquare(square + 8)}
-      </div>
+      <div className="square-row">{squareRow}</div>
     );
   }
 
   render() {
-    const firstRow = [...Array(9)].map((_, i) => {
-      return (
-        this.renderSquare(72 + i)
-      );
+    const board = [...Array(Game.BOARD_HEIGHT + Game.HWALL_COUNT)].map((_, inner) => {
+      var row = parseInt(inner / 2, 10);
+      if (inner % 2 === 0) {
+        return (this.renderSquareAndVWallRow(row * Game.BOARD_WIDTH, row * Game.VWALL_COUNT));
+      } else {
+        return (<div className="wall-row">{this.renderHWallRow(row * Game.VWALL_COUNT)}</div>);
+      }
     });
 
     return (
@@ -273,58 +273,8 @@ class Game extends React.Component {
         <div className='game-info'>
           The move: {this.state.nextPlayer}
         </div>
-        <div>
-          <div className="square-row">
-            {firstRow}
-          </div>
-          <div className="wall-row">
-            {this.renderHWallRow(56)}
-          </div>
-          <div>
-            {this.renderSquareAndVWallRow(63, 56)}
-          </div>
-          <div className="wall-row">
-            {this.renderHWallRow(48)}
-          </div>
-          <div>
-            {this.renderSquareAndVWallRow(54, 48)}
-          </div>
-          <div className="wall-row">
-            {this.renderHWallRow(40)}
-          </div>
-          <div>
-            {this.renderSquareAndVWallRow(45, 40)}
-          </div>
-          <div className="wall-row">
-            {this.renderHWallRow(32)}
-          </div>
-          <div>
-            {this.renderSquareAndVWallRow(36, 32)}
-          </div>
-          <div className="wall-row">
-            {this.renderHWallRow(24)}
-          </div>
-          <div>
-            {this.renderSquareAndVWallRow(27, 24)}
-          </div>
-          <div className="wall-row">
-            {this.renderHWallRow(16)}
-          </div>
-          <div>
-            {this.renderSquareAndVWallRow(18, 16)}
-          </div>
-          <div className="wall-row">
-            {this.renderHWallRow(8)}
-          </div>
-          <div>
-            {this.renderSquareAndVWallRow(9, 8)}
-          </div>
-          <div className="wall-row">
-            {this.renderHWallRow(0)}
-          </div>
-          <div>
-            {this.renderSquareAndVWallRow(0, 0)}
-          </div>
+        <div className='game-board'>
+          {board.reverse()}
         </div>
       </div>
     );
