@@ -1,3 +1,8 @@
+## State structure
+### Game
+* history
+*
+
 ## Rerence
 ### Quoridor
 https://quoridorstrats.wordpress.com/notation/

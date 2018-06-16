@@ -4,7 +4,7 @@ import './Wall.css';
 export class VWall extends React.Component {
   render() {
     return (
-      <div className="vwall">
+      <div className={this.props.history} onClick={() => this.props.gameOnClick()}>
       </div>
     );
   }
@@ -13,7 +13,7 @@ export class VWall extends React.Component {
 export class HWall extends React.Component {
   render() {
     return (
-      <div className="hwall">
+      <div className={this.props.history} onClick={() => this.props.gameOnClick()}>
       </div>
     );
   }

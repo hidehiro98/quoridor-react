@@ -12,7 +12,6 @@
   position: relative;
   margin-left: 7rem;
   margin-top: -0.5rem;
-
 }
 
 .hwall-wrapper:first-child {
@@ -21,5 +20,13 @@
 
 .vwall-wrapper {
   position: relative;
-  margin: 1rem 1rem 0 0px;
+  margin: 1rem 1rem 0 0;
+}
+
+.game-info {
+  text-align: right;
+  margin: 1rem 1.5rem 0 1rem;
+}
+
+.game-board {
 }

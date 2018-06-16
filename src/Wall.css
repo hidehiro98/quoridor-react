@@ -1,30 +1,35 @@
-.hwall {
-  width: 5rem;
-  height: 1rem;
+.hwall,.vwall {
   background-color: #EEEEEE;
   position: absolute;
 }
 
-.hwall:hover {
-  width: 12rem;
-  height: 1rem;
+.hwall:hover,.vwall:hover {
   background-color: #DDDDDD;
   z-index: 1;
+  transition-duration: 0.1s;
+}
+
+.hwall.player1,.hwall.player2,.vwall.player1,.vwall.player2 {
+  background-color: #999999;
+  z-index: 1;
+  position: absolute;
+}
+
+.hwall {
+  width: 5rem;
+  height: 1rem;
+}
+
+.hwall:hover,.hwall.player1,.hwall.player2 {
+  width: 12rem;
 }
 
 .vwall {
   width: 1rem;
   height: 5rem;
-  background-color: #EEEEEE;
-  position: absolute;
 }
 
-.vwall:hover {
-  width: 1rem;
+.vwall:hover,.vwall.player1,.vwall.player2 {
   height: 12rem;
-  background-color: #DDDDDD;
-  z-index: 1;
-  transform: rotate(180deg);
-  bottom: 1rem;
-  /*transform-origin: top;*/
+  margin-top: -7rem;
 }

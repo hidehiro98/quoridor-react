@@ -1,5 +1,5 @@
 html {
-  font-size: calc(100vw / 640 * 10);
+  font-size: calc(100vmin / 640 * 10);
 }
 
 .App {
@@ -15,5 +15,9 @@ html {
 }
 
 .App-game {
-  margin-top: 3rem;
+  margin-top: 1rem;
+  margin: auto;
+  height: 64rem;
+  width: 64rem;
+  position: relative;
 }

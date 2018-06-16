@@ -9,22 +9,26 @@
   margin: 1rem;
 }
 
-
 .square:hover {
   background-color: #DDDDDD;
+  transition-duration: 0.2s;
 }
 
-.player {
+.square>.player1,.square>.player2 {
   height: 3rem;
   width: 3rem;
   border-radius: 50%;
   margin: 1rem;
 }
 
-.player1 {
+.square:hover>.playerNext {
+  opacity: 0.3;
+}
+
+.square>.player1:not(.playerNext),.square:hover>.playerNext.player1 {
   background-color: blue;
 }
 
-.player2 {
+.square>.player2:not(.playerNext),.square:hover>.playerNext.player2 {
   background-color: red;
 }
