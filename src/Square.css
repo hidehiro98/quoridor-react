@@ -14,21 +14,21 @@
   transition-duration: 0.2s;
 }
 
-.square>.player1,.square>.player2 {
+.square>.player1,.square>.player2,.square>.playerNext1,.square>.playerNext2 {
   height: 3rem;
   width: 3rem;
   border-radius: 50%;
   margin: 1rem;
 }
 
-.square:hover>.playerNext {
+.square:hover>.playerNext1,.square:hover>.playerNext2 {
   opacity: 0.3;
 }
 
-.square>.player1:not(.playerNext),.square:hover>.playerNext.player1 {
+.square>.player1,.square:hover>.playerNext1:not(.player2) {
   background-color: blue;
 }
 
-.square>.player2:not(.playerNext),.square:hover>.playerNext.player2 {
+.square>.player2,.square:hover>.playerNext2:not(.player1)  {
   background-color: red;
 }

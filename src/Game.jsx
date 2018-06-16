@@ -177,25 +177,25 @@ class Game extends React.Component {
 
     if (this.state.nextPlayer == 'Player 1') {
       if (i == (currentPlayer1 + 1)) {
-        playerClass += ' player1 playerNext';
+        playerClass += ' playerNext1';
       } else if (i == (currentPlayer1 - 1)) {
-        playerClass += ' player1 playerNext';
+        playerClass += ' playerNext1';
       } else if (i == (currentPlayer1 + 9)) {
-        playerClass += ' player1 playerNext';
+        playerClass += ' playerNext1';
       } else if (i == (currentPlayer1 - 9)) {
-        playerClass += ' player1 playerNext';
+        playerClass += ' playerNext1';
       }
     }
 
     if (this.state.nextPlayer == 'Player 2') {
       if (i == (currentPlayer2 + 1)) {
-        playerClass += ' player2 playerNext';
+        playerClass += ' playerNext2';
       } else if (i == (currentPlayer2 - 1)) {
-        playerClass += ' player2 playerNext';
+        playerClass += ' playerNext2';
       } else if (i == (currentPlayer2 + 9)) {
-        playerClass += ' player2 playerNext';
+        playerClass += ' playerNext2';
       } else if (i == (currentPlayer2 - 9)) {
-        playerClass += ' player2 playerNext';
+        playerClass += ' playerNext2';
       }
     }
 
