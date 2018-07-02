@@ -11,7 +11,8 @@ export const overload = (overloadDefinitions) => {
           return x === Infinity ? 'Infinity' : '-Infinity'
       }
       if (type === 'object') {
-        return x.TYPE ? x.TYPE :
+        console.log("typeOf c.TYPE = " + c.TYPE + ", c.name = " + c.name)
+        return c.TYPE ? c.TYPE :
           c && c.name ? c.name :
             Object.prototype.toString.call(x).slice(8, -1)
       }
