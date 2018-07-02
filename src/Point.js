@@ -4,31 +4,33 @@ export class Point {
     constructor(row = null, col = null) {
         this._row = row | 0 
         this._col = col | 0 
-
+        
         this.set = overload( {
             'number, number': (row, col) => { this._set(row, col) },
-            'Point': (p) => { this._set(...p) },
+            [Point.TYPE]: (p) => { this._set(...p) },
             'Array': (p) => { this._set(...p) },  
         })
 
         this.add = overload( {
             'number, number': (row, col) => { return this._add(row, col) },
-            'Point': (p) => { return this._add(...p) },
+            [Point.TYPE] : (p) => { return this._add(...p) },
             'Array': (p) => { return this._add(...p) },  
         })
 
         this.sub = overload( {
             'number, number': (row, col) => { return this._sub(row, col) },
-            'Point': (p) => { return this._sub(...p) },
+            [Point.TYPE]: (p) => { return this._sub(...p) },
             'Array': (p) => { return this._sub(...p) },  
         })
 
         this.equals = overload( {
             'number, number': (row, col) => { return this._equals(row, col) },
-            'Point': (p) => { return this._equals(...p) },
+            [Point.TYPE]: (p) => { return this._equals(...p) },
             'Array': (p) => { return this._equals(...p) },  
         })
     }
+
+    static get TYPE() { return 'Point' }
 
     get row() { return this._row | 0 }
     set row(value) { this._row = value }
