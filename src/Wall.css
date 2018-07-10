@@ -1,15 +1,15 @@
-.hwall,.vwall {
+.vacant {
   background-color: #EEEEEE;
   position: absolute;
 }
 
-.hwall:hover,.vwall:hover {
+.vacant:hover {
   background-color: #DDDDDD;
   z-index: 1;
   transition-duration: 0.1s;
 }
 
-.hwall.player1,.hwall.player2,.vwall.player1,.vwall.player2 {
+.occupied {
   background-color: #999999;
   z-index: 1;
   position: absolute;
@@ -20,7 +20,7 @@
   height: 1rem;
 }
 
-.hwall:hover,.hwall.player1,.hwall.player2 {
+.hwall:hover,.hwall.occupied {
   width: 12rem;
 }
 
@@ -29,7 +29,7 @@
   height: 5rem;
 }
 
-.vwall:hover,.vwall.player1,.vwall.player2 {
+.vwall:hover,.vwall.occupied {
   height: 12rem;
   margin-top: -7rem;
 }

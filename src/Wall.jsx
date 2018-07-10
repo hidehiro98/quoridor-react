@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Wall.css';
 
 export class VWall extends React.Component {
   render() {
     return (
-      <div className={this.props.history} onClick={() => this.props.gameOnClick()}>
+      <div data-row={this.props.row} data-col={this.props.col} className={this.props.class} onClick={() => this.props.gameOnClick()}>
       </div>
     );
   }
@@ -13,7 +13,7 @@ export class VWall extends React.Component {
 export class HWall extends React.Component {
   render() {
     return (
-      <div className={this.props.history} onClick={() => this.props.gameOnClick()}>
+      <div data-row={this.props.row} data-col={this.props.col} className={this.props.class} onClick={() => this.props.gameOnClick()}>
       </div>
     );
   }
