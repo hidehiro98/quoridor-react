@@ -20,7 +20,7 @@
   height: 1rem;
 }
 
-.hwall:hover,.hwall.occupied {
+.hwall:hover, .hwall .occupied {
   width: 12rem;
 }
 
@@ -29,7 +29,7 @@
   height: 5rem;
 }
 
-.vwall:hover,.vwall.occupied {
+.vwall:hover, .vwall .occupied {
   height: 12rem;
   margin-top: -7rem;
 }
