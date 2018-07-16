@@ -108,6 +108,7 @@ class Game extends React.Component {
     return ret;
   }
 
+  // How to use?
   tryMove(pos, dir, dist) {
     if(this.canMove(pos, dir)) {
       this.searchDistance(pos.add(dir), dist)
@@ -116,7 +117,6 @@ class Game extends React.Component {
     return false
   }
 
-  // TODO: To make OK with jump with wall
   canJump(pos, dir) {
     return this.existPawn(pos.add(dir))
   }
@@ -139,7 +139,7 @@ class Game extends React.Component {
           if (this.distanceMap[pos2.row][pos2.col] > (dist + 1)) {
             this.searchDistance(pos2, dist + 1)
           }
-        } else if (this.canJump(pos, dir)) {
+        } else if (dist === 0 && this.canJump(pos, dir)) {
           
         }
         dir = dir.rotateClockwise()
@@ -184,7 +184,7 @@ class Game extends React.Component {
       }
     }
 
-    if (this.state.distanceMap[row][col] === 1) {
+    if (this.state.distanceMap[row][col] === 1 && !this.state.players[this.getNextPlayer()].pawn.equals(new Point(row, col))) {
       squareClass = this.getCurrentPlayer() + ' pending'
     }
     
@@ -197,7 +197,7 @@ class Game extends React.Component {
       dist={dist}
       class={squareClass + ' font-white'}
       gameOnClick={() => {if(dist === 1){this.handleClickSquare(row, col)}}}
-    />;
+    />
   }
 
   renderVWall(row, col) {
