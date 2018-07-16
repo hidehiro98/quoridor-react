@@ -40,7 +40,7 @@ class Game extends React.Component {
     this.vWalls = [...Array(Game.BOARD_HEIGHT)].map(() => Array(Game.BOARD_WIDTH).fill(null))
     this.hWalls = [...Array(Game.BOARD_HEIGHT)].map(() => Array(Game.BOARD_WIDTH).fill(null))
     this.distanceMap = []
-    
+
     this.players['player1'].pawn.set(0, Math.floor(Game.BOARD_WIDTH / 2))
     this.players['player2'].pawn.set(Game.BOARD_HEIGHT - 1, Math.floor(Game.BOARD_WIDTH / 2))
 
@@ -83,7 +83,7 @@ class Game extends React.Component {
     });
   }
 
-  // Not included jump move
+  // Not included jump move, only for walls
   canMove(pos, dir) {
     let ret = false
     let destPos = pos.add(dir)
@@ -134,13 +134,38 @@ class Game extends React.Component {
       this.distanceMap[pos.row][pos.col] = dist
       let dir = new Point(-1, 0)
       for (let i = 0; i < 4; i++) {
-        if (this.canMove(pos, dir)) {
+        if (dist === 0 && this.canJump(pos, dir)) {
+          let pos2 = pos.add(dir)
+          if (this.canMove(pos2, dir)) {
+            let pos3 = pos2.add(dir)
+            if (this.distanceMap[pos3.row][pos3.col] > (dist + 1)) {
+              this.searchDistance(pos3, dist + 1)
+            }
+          } else if (this.canMove(pos2, dir.rotateClockwise()) && this.canMove(pos2, dir.rotateCounterClockwise())) {
+            let pos3_1 = pos2.add(dir.rotateClockwise())
+            if (this.distanceMap[pos3_1.row][pos3_1.col] > (dist + 1)) {
+              this.searchDistance(pos3_1, dist + 1)
+            }
+            let pos3_2 = pos2.add(dir.rotateCounterClockwise())
+            if (this.distanceMap[pos3_2.row][pos3_2.col] > (dist + 1)) {
+              this.searchDistance(pos3_2, dist + 1)
+            }
+          } else if (this.canMove(pos2, dir.rotateClockwise())) {
+            let pos3 = pos2.add(dir.rotateClockwise())
+            if (this.distanceMap[pos3.row][pos3.col] > (dist + 1)) {
+              this.searchDistance(pos3, dist + 1)
+            }
+          } else if (this.canMove(pos2, dir.rotateCounterClockwise())) {
+            let pos3 = pos2.add(dir.rotateCounterClockwise())
+            if (this.distanceMap[pos3.row][pos3.col] > (dist + 1)) {
+              this.searchDistance(pos3, dist + 1)
+            }
+          }
+        } else if (this.canMove(pos, dir)) {
           let pos2 = pos.add(dir)
           if (this.distanceMap[pos2.row][pos2.col] > (dist + 1)) {
             this.searchDistance(pos2, dist + 1)
           }
-        } else if (dist === 0 && this.canJump(pos, dir)) {
-          
         }
         dir = dir.rotateClockwise()
       }
@@ -187,7 +212,7 @@ class Game extends React.Component {
     if (this.state.distanceMap[row][col] === 1 && !this.state.players[this.getNextPlayer()].pawn.equals(new Point(row, col))) {
       squareClass = this.getCurrentPlayer() + ' pending'
     }
-    
+
     let dist = this.state.distanceMap[row][col]
 
     return <Square
@@ -213,7 +238,7 @@ class Game extends React.Component {
 
     return <VWall
       row={row}
-      col={col} 
+      col={col}
       class={wallClass}
       gameOnClick={() => this.handleClickVWall(row, col)}
     />;
@@ -232,7 +257,7 @@ class Game extends React.Component {
 
     return <HWall
       row={row}
-      col={col} 
+      col={col}
       class={wallClass}
       gameOnClick={() => this.handleClickHWall(row, col)}
     />;
