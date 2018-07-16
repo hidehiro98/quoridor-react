@@ -83,6 +83,7 @@ class Game extends React.Component {
     });
   }
 
+  // Not included jump move
   canMove(pos, dir) {
     let ret = false
     let destPos = pos.add(dir)
@@ -115,6 +116,7 @@ class Game extends React.Component {
     return false
   }
 
+  // TODO: To make OK with jump with wall
   canJump(pos, dir) {
     return this.existPawn(pos.add(dir))
   }
@@ -128,24 +130,21 @@ class Game extends React.Component {
   }
 
   searchDistance(pos, dist) {
-    if (dist <= 1) {
+    if (dist <= 30) {
       this.distanceMap[pos.row][pos.col] = dist
-
       let dir = new Point(-1, 0)
       for (let i = 0; i < 4; i++) {
         if (this.canMove(pos, dir)) {
           let pos2 = pos.add(dir)
-          if (dist === 0 && this.canJump(pos, dir)) {
-            if(!this.tryMove(pos2, dir, dist + 1)) {
-              this.tryMove(pos2, dir.rotateClockwise(), dist + 1)
-              this.tryMove(pos2, dir.rotateCounterClockwise(), dist + 1)
-            }
-          } else {
+          if (this.distanceMap[pos2.row][pos2.col] > (dist + 1)) {
             this.searchDistance(pos2, dist + 1)
           }
+        } else if (this.canJump(pos, dir)) {
+          
         }
         dir = dir.rotateClockwise()
       }
+
     }
   }
 
@@ -196,7 +195,7 @@ class Game extends React.Component {
       row={row}
       col={col}
       dist={dist}
-      class={squareClass}
+      class={squareClass + ' font-white'}
       gameOnClick={() => {if(dist === 1){this.handleClickSquare(row, col)}}}
     />;
   }
