@@ -178,6 +178,14 @@ class Game extends React.Component {
     this.searchDistance(this.players[player].pawn, 0)
   }
 
+  check99(distance) {
+    return distance === 99
+  }
+
+  checkDistance(row) {
+    return this.distanceMap[row].every(this.check99)
+  }
+
   handleClickSquare(row, col) {
     this.startTurn()
     this.players[this.getCurrentPlayer()].pawn.set(row, col)
@@ -190,6 +198,10 @@ class Game extends React.Component {
     this.vWalls[row][col] = this.getCurrentPlayer()
     this.players[this.getCurrentPlayer()].wallCount--
     this.calcDistanceMap(this.getNextPlayer())
+    if (this.checkDistance(0) || this.checkDistance(8)) {
+      console.log('test')
+      return
+    }
     this.endTurn()
   }
 
@@ -227,12 +239,18 @@ class Game extends React.Component {
 
   renderVWall(row, col) {
     let wallClass = 'vwall vacant'
-    if (this.state.vWalls[row][col] != null) {
+    if (this.state.vWalls[row][col] === 'player1' ||
+        this.state.vWalls[row][col] === 'player2') {
       wallClass = 'vwall occupied'
-    } else if (this.state.vWalls[row + 1][col] != null) {
+    } else if (this.state.vWalls[row + 1][col] === 'player1' ||
+               this.state.vWalls[row + 1][col] === 'player2') {
       wallClass = ''
     }
-    if (this.state.hWalls[row][col] != null) {
+    if (this.state.hWalls[row][col] === 'player1' ||
+        this.state.hWalls[row][col] === 'player2') {
+      wallClass = ''
+    }
+    if (this.state.vWalls[row][col] === 'forbidden') {
       wallClass = ''
     }
 
