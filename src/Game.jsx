@@ -1,4 +1,6 @@
 import React from 'react';
+import $ from 'jquery';
+
 import './Game.css';
 
 import {Square} from './Square';
@@ -194,23 +196,61 @@ class Game extends React.Component {
   }
 
   handleClickVWall(row, col) {
-    this.startTurn()
-    this.vWalls[row][col] = this.getCurrentPlayer()
-    this.players[this.getCurrentPlayer()].wallCount--
-    this.calcDistanceMap(this.getNextPlayer())
-    if (this.checkDistance(0) || this.checkDistance(8)) {
-      console.log('test')
-      return
+    // Usinf jQuery for deep clone of object
+    const currentVWalls = $.extend(true, {}, this.vWalls)
+    const currentWallCount = this.players[this.getCurrentPlayer()].wallCount
+
+    try {
+      this.startTurn()
+
+      this.vWalls[row][col] = this.getCurrentPlayer()
+      this.players[this.getCurrentPlayer()].wallCount--
+
+
+      this.calcDistanceMap(this.getCurrentPlayer())
+      if (this.checkDistance(0) || this.checkDistance(8)) {
+        throw new Error('')
+      }
+      this.calcDistanceMap(this.getNextPlayer())
+      if (this.checkDistance(0) || this.checkDistance(8)) {
+        throw new Error('')
+      }
+
+      this.endTurn()
+    } catch (e) {
+      window.alert('そこに壁を置くことはできません')
+      this.vWalls = currentVWalls
+      this.players[this.getCurrentPlayer()].wallCount = currentWallCount
     }
-    this.endTurn()
   }
 
   handleClickHWall(row, col) {
-    this.startTurn()
-    this.hWalls[row][col] = this.getCurrentPlayer()
-    this.players[this.getCurrentPlayer()].wallCount--
-    this.calcDistanceMap(this.getNextPlayer())
-    this.endTurn()
+    // Usinf jQuery for deep clone of object
+    const currentHWalls = $.extend(true, {}, this.hWalls)
+    const currentWallCount = this.players[this.getCurrentPlayer()].wallCount
+
+    try {
+      this.startTurn()
+
+      this.hWalls[row][col] = this.getCurrentPlayer()
+      this.players[this.getCurrentPlayer()].wallCount--
+
+
+      this.calcDistanceMap(this.getCurrentPlayer())
+      if (this.checkDistance(0) || this.checkDistance(8)) {
+        throw new Error('')
+      }
+      this.calcDistanceMap(this.getNextPlayer())
+      if (this.checkDistance(0) || this.checkDistance(8)) {
+        throw new Error('')
+      }
+
+      this.endTurn()
+    } catch (e) {
+      window.alert('そこに壁を置くことはできません')
+      this.hWalls = currentHWalls
+      this.players[this.getCurrentPlayer()].wallCount = currentWallCount
+    }
   }
 
   renderSquare(row, col) {
