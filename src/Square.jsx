@@ -7,7 +7,6 @@ export class Square extends React.Component {
     return (
       <div className='square' {...tapOrClick(this.props.gameOnClick)}>
         <div data-row={this.props.row} data-col={this.props.col} className={this.props.class}>
-          {this.props.dist}
         </div>
       </div>
     );
