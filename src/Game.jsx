@@ -206,7 +206,6 @@ class Game extends React.Component {
       this.vWalls[row][col] = this.getCurrentPlayer()
       this.players[this.getCurrentPlayer()].wallCount--
 
-
       this.calcDistanceMap(this.getCurrentPlayer())
       if (this.checkDistance(0) || this.checkDistance(8)) {
         throw new Error('')
@@ -234,7 +233,6 @@ class Game extends React.Component {
 
       this.hWalls[row][col] = this.getCurrentPlayer()
       this.players[this.getCurrentPlayer()].wallCount--
-
 
       this.calcDistanceMap(this.getCurrentPlayer())
       if (this.checkDistance(0) || this.checkDistance(8)) {

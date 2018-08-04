@@ -2,31 +2,31 @@ import {overload} from './Overload'
 
 export class Point {
     constructor(row = null, col = null) {
-        this._row = row | 0 
-        this._col = col | 0 
-        
+        this._row = row | 0
+        this._col = col | 0
+
         this.set = overload( {
             'number, number': (row, col) => { this._set(row, col) },
             [this.constructor.TYPE]: (p) => { this._set(...p) },
-            'Array': (p) => { this._set(...p) },  
+            'Array': (p) => { this._set(...p) },
         })
 
         this.add = overload( {
             'number, number': (row, col) => { return this._add(row, col) },
             [this.constructor.TYPE] : (p) => { return this._add(...p) },
-            'Array': (p) => { return this._add(...p) },  
+            'Array': (p) => { return this._add(...p) },
         })
 
         this.sub = overload( {
             'number, number': (row, col) => { return this._sub(row, col) },
             [this.constructor.TYPE]: (p) => { return this._sub(...p) },
-            'Array': (p) => { return this._sub(...p) },  
+            'Array': (p) => { return this._sub(...p) },
         })
 
         this.equals = overload( {
             'number, number': (row, col) => { return this._equals(row, col) },
             [this.constructor.TYPE]: (p) => { return this._equals(...p) },
-            'Array': (p) => { return this._equals(...p) },  
+            'Array': (p) => { return this._equals(...p) },
         })
     }
 
@@ -73,4 +73,3 @@ export class Point {
         yield this.col
     }
 }
-
